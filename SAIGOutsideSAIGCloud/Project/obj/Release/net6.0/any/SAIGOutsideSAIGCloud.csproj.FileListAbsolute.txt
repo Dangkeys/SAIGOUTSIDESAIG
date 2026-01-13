@@ -1,0 +1,12 @@
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.csproj.AssemblyReference.cache
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.AssemblyInfoInputs.cache
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.AssemblyInfo.cs
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.csproj.CoreCompileInputs.cache
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\bin\Release\net6.0\any\SAIGOutsideSAIGCloud.deps.json
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\bin\Release\net6.0\any\SAIGOutsideSAIGCloud.dll
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\bin\Release\net6.0\any\SAIGOutsideSAIGCloud.pdb
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.dll
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\refint\SAIGOutsideSAIGCloud.dll
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.pdb
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\ref\SAIGOutsideSAIGCloud.dll

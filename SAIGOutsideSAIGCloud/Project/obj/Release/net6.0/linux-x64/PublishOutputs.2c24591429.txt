@@ -1,0 +1,13 @@
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\SAIGOutsideSAIGCloud.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\SAIGOutsideSAIGCloud.deps.json
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\SAIGOutsideSAIGCloud.pdb
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Unity.Services.CloudCode.Apis.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Unity.Services.CloudCode.Core.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Google.Protobuf.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Grpc.Core.Api.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Grpc.Net.Client.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Grpc.Net.Common.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\JsonSubTypes.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\dangk\AppData\Local\Temp\SAIGOutsideSAIGCloud\module-compilation\Newtonsoft.Json.dll
