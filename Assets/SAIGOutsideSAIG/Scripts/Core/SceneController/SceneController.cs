@@ -102,12 +102,7 @@ namespace SceneController
         {
             foreach (var entry in entries)
             {
-                var sceneSO = _sceneDatabaseSO.FindSceneSOById(entry.id);
-                if (sceneSO == null)
-                {
-                    sceneSO = _sceneDatabaseSO.FindSceneSOByName(entry.name);
-
-                }
+                var sceneSO = _sceneDatabaseSO.FindSceneSOById(entry.id) ?? _sceneDatabaseSO.FindSceneSOByName(entry.name);
                 if (sceneSO == null)
                 {
                     continue;
