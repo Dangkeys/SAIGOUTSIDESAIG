@@ -10,3 +10,4 @@ C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSI
 C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\refint\SAIGOutsideSAIGCloud.dll
 C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.pdb
 C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\ref\SAIGOutsideSAIGCloud.dll
+C:\Users\dangk\OneDrive\Desktop\WorkSpace\Coding\GameDev\UnityProjects\SAIGOUTSIDESAIG\SAIGOutsideSAIGCloud\Project\obj\Release\net6.0\any\SAIGOutsideSAIGCloud.sourcelink.json

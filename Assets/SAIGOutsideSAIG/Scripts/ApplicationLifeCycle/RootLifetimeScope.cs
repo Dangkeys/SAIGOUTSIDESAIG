@@ -7,7 +7,7 @@ public class RootLifetimeScope : LifetimeScope
 {
     protected override void Configure(IContainerBuilder builder)
     {
-
+        builder.RegisterEntryPoint<ApplicationManager>().AsSelf();
         builder.Register<InputSystem_Actions>(Lifetime.Singleton);
         builder.Register<GameInputReader>(Lifetime.Singleton);
         builder.RegisterMessagePipe();

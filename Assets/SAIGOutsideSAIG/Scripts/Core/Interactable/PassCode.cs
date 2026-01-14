@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using Core.Player;
+using SceneController;
 using UI;
 using Unity.Services.Authentication;
 using Unity.Services.CloudCode;
@@ -16,31 +18,70 @@ namespace Interactable
         private PassCodeServiceBindings _passCodeServiceBindings;
         private PassCodeUI _passCodeUI;
         private PlayerMovement _playerMovement;
+        private SceneSO _currentSceneSO;
+        [SerializeField] private bool _isFinalPassCode;
 
         [Inject]
-        private void Construct(PassCodeUI passCodeUI, PlayerMovement playerMovement)
+        private void Construct(PassCodeUI passCodeUI, PlayerMovement playerMovement, SceneSO sceneSO)
         {
             _playerMovement = playerMovement;
             _passCodeUI = passCodeUI;
+            _currentSceneSO = sceneSO;
         }
         private void Awake()
         {
-            _passCodeUI.OnPasswordSubmitted += HandlePasswordSubmitted;
+            if (_isFinalPassCode)
+            {
+                _passCodeUI.OnPasswordSubmitted += HandlePasswordSubmittedAndSolveScene;
+            }
+            else
+            {
+                _passCodeUI.OnPasswordSubmitted += HandlePasswordSubmitted;
+
+            }
             _passCodeUI.OnUIClosed += HandleUIClosed;
         }
+
+        private async void HandlePasswordSubmittedAndSolveScene(string input)
+        {
+            try
+            {
+                bool isCorrect = await _passCodeServiceBindings.VerifyPasswordAndSolveScene(_passCodeSO.ID, _passCodeSO.Name, inputPassword: input, _currentSceneSO.ID, _currentSceneSO.Name);
+                if (isCorrect)
+                {
+                    StartCoroutine(Test());
+                }
+                _passCodeUI.ShowResult(isCorrect);
+            }
+            catch (CloudCodeException ex)
+            {
+                Debug.LogException(ex);
+            }
+        }
+        private IEnumerator Test()
+        {
+            Debug.Log("You win this map");
+            yield return new WaitForSecondsRealtime(5);
+            Debug.Log("Leave the game please");
+        }
+
         private void Start()
         {
-            InitServices();
-            _passCodeServiceBindings = new PassCodeServiceBindings(CloudCodeService.Instance);
-        }
-        private async void InitServices()
-        {
-            if (UnityServices.State == ServicesInitializationState.Uninitialized)
+            if (UnityServices.State == ServicesInitializationState.Initialized)
             {
-                Debug.Log("Services Initializing");
-                await UnityServices.InitializeAsync();
-                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+                _passCodeServiceBindings = new PassCodeServiceBindings(CloudCodeService.Instance);
             }
+            else
+            {
+                // Subscribe to event if not yet initialized
+                UnityServices.Initialized += OnUnityInitialized;
+            }
+        }
+
+        private void OnUnityInitialized()
+        {
+            _passCodeServiceBindings = new PassCodeServiceBindings(CloudCodeService.Instance);
+            UnityServices.Initialized -= OnUnityInitialized;
         }
         private void HandleUIClosed()
         {
@@ -61,7 +102,6 @@ namespace Interactable
                 if (isCorrect)
                 {
                     _door.TriggerOpenAnimation();
-                    TestSayHello();
                 }
                 _passCodeUI.ShowResult(isCorrect);
             }
@@ -70,14 +110,18 @@ namespace Interactable
                 Debug.LogException(ex);
             }
         }
+
         private void OnDestroy()
         {
-            _passCodeUI.OnPasswordSubmitted -= HandlePasswordSubmitted;
-        }
+            if (_isFinalPassCode)
+            {
+                _passCodeUI.OnPasswordSubmitted -= HandlePasswordSubmittedAndSolveScene;
+            }
+            else
+            {
+                _passCodeUI.OnPasswordSubmitted -= HandlePasswordSubmitted;
 
-        private async void TestSayHello()
-        {
-
+            }
         }
     }
 }

@@ -19,9 +19,11 @@ namespace SAIGOutsideSAIGCloud
     {
 
         private readonly ILogger<PassCodeService> _logger;
-        public PassCodeService(ILogger<PassCodeService> logger)
+        private readonly SceneService _sceneService;
+        public PassCodeService(ILogger<PassCodeService> logger, SceneService sceneService)
         {
             _logger = logger;
+            _sceneService = sceneService;
         }
         [CloudCodeFunction("VerifyPassword")]
         public async Task<bool> VerifyPassword(IExecutionContext context, IGameApiClient gameApiClient, string passCodeID, string passCodeName, string inputPassword)
@@ -51,12 +53,7 @@ namespace SAIGOutsideSAIGCloud
 
             if (passcodeList == null) return false;
 
-            var foundItem = passcodeList.FirstOrDefault(item => item.id == passCodeID);
-
-            if (foundItem == null)
-            {
-                foundItem = passcodeList.FirstOrDefault(item => item.name == passCodeName);
-            }
+            var foundItem = passcodeList.FirstOrDefault(item => item.id == passCodeID) ?? passcodeList.FirstOrDefault(item => item.name == passCodeName);
 
             if (foundItem != null)
             {
@@ -64,6 +61,22 @@ namespace SAIGOutsideSAIGCloud
             }
 
             return false;
+        }
+        [CloudCodeFunction("VerifyPasswordAndSolveScene")]
+        public async Task<bool> VerifyPasswordAndSolveScene(IExecutionContext context, PushClient pushClient, IGameApiClient gameApiClient, string passCodeID, string passCodeName, string inputPassword, string sceneID, string sceneName)
+        {
+            var isCorrect = await VerifyPassword(context, gameApiClient, passCodeID, passCodeName, inputPassword);
+            if (isCorrect)
+            {
+                await _sceneService.SolveScene(context, gameApiClient, sceneID, sceneName);
+                await SendProjectMessage(context, pushClient, $"{sceneID}:{sceneName}", "GlobalSceneAlert");
+            }
+            return isCorrect;
+        }
+        private async Task<string> SendProjectMessage(IExecutionContext context, PushClient pushClient, string message, string messageType)
+        {
+            var response = await pushClient.SendProjectMessageAsync(context, message, messageType);
+            return "Project message sent";
         }
     }
 }

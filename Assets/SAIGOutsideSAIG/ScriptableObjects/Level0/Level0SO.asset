@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cde0f6785a6d42c488a57def25093597, type: 3}
-  m_Name: Level1SO
-  m_EditorClassIdentifier: Assembly-CSharp::Scene.SceneSO
-  <ID>k__BackingField: 9a479cc4-388d-4b57-8453-ab93792a9c0b
-  <Name>k__BackingField: Level 1
+  m_Name: Level0SO
+  m_EditorClassIdentifier: Assembly-CSharp::SceneSO
+  <ID>k__BackingField: 427e8566-ef07-4d4a-af7b-e2fc47921868
+  <Name>k__BackingField: Level 0
