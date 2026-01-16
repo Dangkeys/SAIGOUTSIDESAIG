@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-namespace SceneController
+namespace SceneSystem
 {
     [CreateAssetMenu(fileName = "SceneDatabaseSO", menuName = "Scriptable Objects/SceneDatabaseSO")]
     public class SceneDatabaeSO : ScriptableObject

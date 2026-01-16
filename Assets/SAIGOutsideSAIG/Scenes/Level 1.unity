@@ -980,6 +980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable.PassCode
   _door: {fileID: 2082297065}
   _passCodeSO: {fileID: 11400000, guid: 94dc7f11b7fb8474b97fefc9374c1846, type: 2}
+  _isFinalPassCode: 0
 --- !u!65 &130359078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5424,6 +5425,7 @@ MonoBehaviour:
   autoInjectGameObjects:
   - {fileID: 749828959}
   - {fileID: 130359075}
+  _sceneSO: {fileID: 11400000, guid: 969bf845c5dcb85408fc9eebd2507fe4, type: 2}
 --- !u!1 &1363393025
 GameObject:
   m_ObjectHideFlags: 0

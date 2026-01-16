@@ -5,15 +5,19 @@ using UnityEngine;
 using VContainer.Unity;
 using IInitializable = VContainer.Unity.IInitializable;
 using System.Threading.Tasks;
-using UnityEngine.SceneManagement;
 using Unity.Services.CloudCode.Subscriptions;
 using Newtonsoft.Json;
 using Unity.Services.CloudCode;
+using MessagePipe;
+using Messages;
+using VContainer;
 
-public class ApplicationManager : IInitializable, ITickable, IDisposable
+public class ApplicationController : IInitializable, ITickable, IDisposable
 {
-    private bool _initialized;
+    public bool IsInitialized { get; private set; }
     public event Action InitializeEvent;
+    public event Action<ProjectEventMessage> OnProjectEventMessage;
+
 
     public async void Initialize()
     {
@@ -27,7 +31,7 @@ public class ApplicationManager : IInitializable, ITickable, IDisposable
 #endif
 
         // Prevent re-initialization
-        if (_initialized)
+        if (IsInitialized)
             return;
 
         try
@@ -37,21 +41,29 @@ public class ApplicationManager : IInitializable, ITickable, IDisposable
 
             await SignUpAnonymouslyIfNeeded();
             await SubscribeToProjectMessages();
-            _initialized = true;
-            InitializeEvent.Invoke();
+            IsInitialized = true;
+            InitializeEvent?.Invoke();
         }
         catch (System.Exception ex)
         {
-            Debug.LogWarning($"[GameBootFlow] Initialization failed: {ex.GetType().Name} - {ex.Message}");
+            Debug.LogWarning($"[GameBootFlow] Initialization failed: {ex.GetType().Name} - {ex.Message}\n{ex.StackTrace}");
         }
     }
     Task SubscribeToProjectMessages()
     {
+        if (CloudCodeService.Instance == null)
+        {
+            Debug.LogWarning("[GameBootFlow] CloudCodeService.Instance is null");
+            return Task.CompletedTask;
+        }
+
         var callbacks = new SubscriptionEventCallbacks();
         callbacks.MessageReceived += @event =>
         {
             Debug.Log(DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm:ss.fffK"));
             Debug.Log($"Got project subscription Message: {JsonConvert.SerializeObject(@event, Formatting.Indented)}");
+            Debug.Log($"messageType: {@event.MessageType}, message: {@event.Message}");
+            OnProjectEventMessage?.Invoke(new ProjectEventMessage { messageType = @event.MessageType, message = @event.Message });
         };
         callbacks.ConnectionStateChanged += @event =>
         {

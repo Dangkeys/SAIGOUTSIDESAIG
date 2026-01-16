@@ -13,7 +13,7 @@ namespace Unity.Services.CloudCode.GeneratedBindings
             k_Service = service;
         }
 
-        public async Task<bool> VerifyPassword(string passCodeID, string passCodeName, string inputPassword)
+        public async Task<bool> VerifyPassword(string passCodeID, string inputPassword)
         {
             return await k_Service.CallModuleEndpointAsync<bool>(
                 "SAIGOutsideSAIGCloud",
@@ -21,12 +21,11 @@ namespace Unity.Services.CloudCode.GeneratedBindings
                 new Dictionary<string, object>()
                 {
                     {"passCodeID", passCodeID},
-                    {"passCodeName", passCodeName},
                     {"inputPassword", inputPassword},
                 });
         }
 
-        public async Task<bool> VerifyPasswordAndSolveScene(string passCodeID, string passCodeName, string inputPassword, string sceneID, string sceneName)
+        public async Task<bool> VerifyPasswordAndSolveScene(string passCodeID, string inputPassword, string sceneID)
         {
             return await k_Service.CallModuleEndpointAsync<bool>(
                 "SAIGOutsideSAIGCloud",
@@ -34,10 +33,8 @@ namespace Unity.Services.CloudCode.GeneratedBindings
                 new Dictionary<string, object>()
                 {
                     {"passCodeID", passCodeID},
-                    {"passCodeName", passCodeName},
                     {"inputPassword", inputPassword},
                     {"sceneID", sceneID},
-                    {"sceneName", sceneName},
                 });
         }
     }

@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable.PassCode
   _door: {fileID: 2082297065}
-  _passCodeSO: {fileID: 11400000, guid: 94dc7f11b7fb8474b97fefc9374c1846, type: 2}
+  _passCodeSO: {fileID: 11400000, guid: 901b432ae0a71e949ac2efdf145f3635, type: 2}
   _isFinalPassCode: 1
 --- !u!65 &130359078
 BoxCollider:

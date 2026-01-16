@@ -95,7 +95,6 @@ namespace InputSystem
             {
                 DisableActionMapsExceptSpecified();
                 ClearAllCallbacks();
-                Debug.Log("GameInputReader disposed and inputs disabled");
             }
         }
 

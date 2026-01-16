@@ -26,50 +26,27 @@ namespace SAIGOutsideSAIGCloud
             _sceneService = sceneService;
         }
         [CloudCodeFunction("VerifyPassword")]
-        public async Task<bool> VerifyPassword(IExecutionContext context, IGameApiClient gameApiClient, string passCodeID, string passCodeName, string inputPassword)
+        public async Task<bool> VerifyPassword(IExecutionContext context, IGameApiClient gameApiClient, string passCodeID, string inputPassword)
         {
-            var results = await gameApiClient.CloudSaveData.GetPrivateCustomItemsAsync(context, context.ServiceToken, context.ProjectId, "CONFIG_PASSCODES", new List<string> { "data" });
-            _logger.LogDebug("CloudSaveData.GetPrivateCustomItemsAsync results: {Results}", JsonConvert.SerializeObject(results));
+            var results = await gameApiClient.CloudSaveData.GetPrivateCustomItemsAsync(context, context.ServiceToken, context.ProjectId, $"PASSCODE_{passCodeID}", new List<string> { "password" });
+            _logger.LogDebug("CloudSaveData.GetPrivateCustomItemsAsync results: {Results}", results);
             if (results.Data.Results == null)
             {
                 return false;
             }
             var value = results.Data.Results.First().Value;
+            _logger.LogDebug("Value: {Value}", value);
+            return string.Equals(inputPassword, (string?)value, System.StringComparison.OrdinalIgnoreCase);
 
-            List<PasscodeItem>? passcodeList = null;
-            try
-            {
-                var valueString = value?.ToString();
-                if (string.IsNullOrEmpty(valueString))
-                {
-                    return false;
-                }
-                passcodeList = JsonConvert.DeserializeObject<List<PasscodeItem>>(valueString);
-            }
-            catch
-            {
-                return false;
-            }
-
-            if (passcodeList == null) return false;
-
-            var foundItem = passcodeList.FirstOrDefault(item => item.id == passCodeID) ?? passcodeList.FirstOrDefault(item => item.name == passCodeName);
-
-            if (foundItem != null)
-            {
-                return inputPassword == foundItem.password;
-            }
-
-            return false;
         }
         [CloudCodeFunction("VerifyPasswordAndSolveScene")]
-        public async Task<bool> VerifyPasswordAndSolveScene(IExecutionContext context, PushClient pushClient, IGameApiClient gameApiClient, string passCodeID, string passCodeName, string inputPassword, string sceneID, string sceneName)
+        public async Task<bool> VerifyPasswordAndSolveScene(IExecutionContext context, PushClient pushClient, IGameApiClient gameApiClient, string passCodeID, string inputPassword, string sceneID)
         {
-            var isCorrect = await VerifyPassword(context, gameApiClient, passCodeID, passCodeName, inputPassword);
+            var isCorrect = await VerifyPassword(context, gameApiClient, passCodeID, inputPassword);
             if (isCorrect)
             {
-                await _sceneService.SolveScene(context, gameApiClient, sceneID, sceneName);
-                await SendProjectMessage(context, pushClient, $"{sceneID}:{sceneName}", "GlobalSceneAlert");
+                await _sceneService.SolveScene(context, gameApiClient, sceneID);
+                await SendProjectMessage(context, pushClient, $"{sceneID}", "GlobalSceneAlert");
             }
             return isCorrect;
         }

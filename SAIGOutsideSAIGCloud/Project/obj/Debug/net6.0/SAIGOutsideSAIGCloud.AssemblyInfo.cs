@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SAIGOutsideSAIGCloud")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+737afceaa633c12c520657a27b8026a6a6677e87")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cecd8b9af023bec401083d3266dc1e401029d0cc")]
 [assembly: System.Reflection.AssemblyProductAttribute("SAIGOutsideSAIGCloud")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SAIGOutsideSAIGCloud")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

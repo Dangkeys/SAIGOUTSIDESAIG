@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using Core.Player;
-using SceneController;
+using SceneSystem;
 using UI;
 using Unity.Services.Authentication;
 using Unity.Services.CloudCode;
@@ -46,9 +46,12 @@ namespace Interactable
         {
             try
             {
-                bool isCorrect = await _passCodeServiceBindings.VerifyPasswordAndSolveScene(_passCodeSO.ID, _passCodeSO.Name, inputPassword: input, _currentSceneSO.ID, _currentSceneSO.Name);
+                bool isCorrect = await _passCodeServiceBindings.VerifyPasswordAndSolveScene(_passCodeSO.ID, inputPassword: input, _currentSceneSO.ID);
                 if (isCorrect)
                 {
+                    _door.TriggerOpenAnimation();
+
+                    _passCodeUI.ShowResult(isCorrect);
                     StartCoroutine(Test());
                 }
                 _passCodeUI.ShowResult(isCorrect);
@@ -98,7 +101,7 @@ namespace Interactable
         {
             try
             {
-                bool isCorrect = await _passCodeServiceBindings.VerifyPassword(_passCodeSO.ID, _passCodeSO.Name, inputPassword: input);
+                bool isCorrect = await _passCodeServiceBindings.VerifyPassword(_passCodeSO.ID, inputPassword: input);
                 if (isCorrect)
                 {
                     _door.TriggerOpenAnimation();
